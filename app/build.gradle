@@ -1,11 +1,11 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 30
     buildToolsVersion "29.0.3"
 
     defaultConfig {
-        applicationId "com.anirban.test.mlkit.facerecognition"
+        applicationId "com.anirban.test.mlkit"
         minSdkVersion 29
         targetSdkVersion 29
         versionCode 1
@@ -20,6 +20,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
@@ -30,6 +35,20 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
+    // CameraX core library is in 1.0.0-beta12 version now
+    def camerax_version = "1.0.0-beta12"
+    implementation "androidx.camera:camera-core:${camerax_version}"
+    implementation "androidx.camera:camera-camera2:${camerax_version}"
+    implementation "androidx.camera:camera-lifecycle:${camerax_version}"
+    // CameraX View class
+    implementation "androidx.camera:camera-view:1.0.0-alpha19"
+
     // MLKit face detection, link: https://developers.google.com/ml-kit/vision/face-detection/android
     implementation 'com.google.mlkit:face-detection:16.0.1'
+
+    // ML Kit Digital Ink recognition, link: https://developers.google.com/ml-kit/vision/digital-ink-recognition/android
+    implementation 'com.google.mlkit:digital-ink-recognition:16.0.0'
+
+    // MLKit Barcode scanning, link: https://developers.google.com/ml-kit/vision/barcode-scanning/android
+    implementation 'com.google.mlkit:barcode-scanning:16.1.0'
 }
